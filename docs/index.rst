@@ -157,13 +157,14 @@ The configuration file is formatted as YAML, which makes it more human readable.
 	port: 5514
 	publish_address: 172.17.17.2
 	publish_port: 49017
-	transport: zmq
-	listener: kafka
-	listener_opts:
-	  bootstrap_servers:
-	    - 10.10.10.1
-	    - 10.10.10.2
-	    - 10.10.10.3
+	publisher: zmq
+	listener:
+      kafka:
+	    bootstrap_servers:
+	      - 10.10.10.1
+	      - 10.10.10.2:1234
+	      - srv1.kafka.as1234.net
+          - srv2.kafka.as1234.net:17171
 
 The configuration above listenes to the syslog messages from the Kafka bootstrap servers ``10.10.10.1``, ``10.10.10.2`` and ``10.10.10.3`` then publishes the structured objects encrypted and serialized via ZeroMQ, serving them at the address ``172.17.17.2``, port ``49017``.
 
